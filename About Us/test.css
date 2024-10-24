@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('heyy.png');
+    object-fit: fill;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.container {
+    position: absolute;
+    top: 35vh;
+    left: 15vw;
+}
+
+.bg {
+    height: 123vh;
+    width: 100vw;
+    background: #000;
+    opacity: 0.6;
+    z-index: 1;
+}
+
+.card {
+    height: 200px;
+    aspect-ratio: 12/16;
+    margin: 2px;
+    transition: transform 1s ease-in-out, left 1s ease-in-out, top 1s ease-in-out;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    border-radius: 12%;
+    opacity: 0.65;
+    position: relative;
+    overflow: hidden;
+}
+
+.card1,
+.card2,
+.card3,
+.card4 {
+    background-color: rgb(231, 171, 81);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card1 {
+    transform: rotate(-24deg);
+    left: -64px;
+    top: -24px;
+}
+
+.card2 {
+    transform: rotate(-6deg);
+    top: -214px;
+    left: -29px;
+}
+
+.card3 {
+    transform: rotate(15deg);
+    top: -390px;
+}
+
+.card4 {
+    transform: rotate(39deg);
+    top: -563px;
+    left: 32px;
+}
+
+/* Animation to rotate cards */
+@keyframes cards {
+    0% {}
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.card.animate {
+    animation: cards 2s linear 0.5s forwards;
+}
+
+/* After rearranging, we set this class for a horizontal row */
+.row-layout {
+    position: relative;
+    left: 10vw !important;
+    top: 7vh !important;
+    transform: rotate(0deg) !important;
+    display: inline-block;
+}
+
+.row-layout:hover {
+    transform: translateZ(50px);
+    perspective: 1000px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.text {
+    background-color: burlywood;
+    opacity: 0.7;
+    box-shadow: inset 0 100px 2000px rgba(255, 255, 255, 0.5);
+    z-index: 2;
+    position: absolute;
+    top: 0vh;
+    left: 50vw;
+    backdrop-filter: blur(5px);
+    font-size: 36px;
+    padding-top: 250px;
+    padding-bottom: 100%;
+    text-align: center;
+    color: oldlace;
+}
+
+.text.fade-out {
+    transform: translateX(60vw);
+    transition: transform 3s linear 1.5s;
+}
+
+/* New styles for image and text after clicking the cards */
+.card .image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: all 1s ease-in-out;
+    position: absolute;
+    border-radius: 0%;
+}
+
+/* Shrinking and moving the image to top left on click */
+.card.clicked .image {
+    width: 50px;
+    height: 50px;
+    top: 10px;
+    left: 10px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    transition: width 1.5s ease-in-out, height 1.5s ease-in-out, top 1.5s ease-in-out, left 1.5s ease-in-out, border-radius 1.5s ease-in-out;
+}
+
+/* Fix for staying in the top left corner */
+.card.clicked .image.fixed {
+    position: fixed; /* Fix the position to the entire screen */
+    top: 10px; /* Move it to top left */
+    left: 10px;
+    z-index: 9999; /* Ensure it's on top */
+}
+
+.card.clicked {
+    background-color: burlywood; /* Beige background when image disappears */
+}
+
+.card .card-text {
+    display: none;
+    opacity: 0;
+    position: absolute;
+    top: 70px;
+    left: 10px;
+    color: white;
+    font-size: 1rem;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Show text when image disappears */
+.card.clicked .card-text {
+    display: block;
+    opacity: 1;
+}
